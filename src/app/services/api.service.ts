@@ -14,4 +14,17 @@ export class ApiService {
   get(query: string){
     return this.httpService.get(environment.url+'/'+query);
   }
+
+  post(query: string, body: object){
+    return this.httpService.post(environment.url+'/'+query, body);
+  }
+
+  put(query: string, body: object){
+    return this.httpService.put(environment.url+'/'+query, body);
+  }
+
+  delete(query: string, body: object){
+    return this.httpService.delete(environment.url+'/'+query);
+  }
+
 }

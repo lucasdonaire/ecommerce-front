@@ -10,15 +10,18 @@ import { HttpService } from '../services/http.service';
 })
 export class HomePage implements OnInit {
   products = [];
+  client:any;
+  cart:any;
 
   constructor(
     public apiService: ApiService,
   ) {}
 
   async ngOnInit(){
-    const ret = await this.apiService.get('product');
-    this.products = ret;
-    console.log(this.products)
+    const products = await this.apiService.get('product');
+    this.products = products.filter((product: any) => product.stock>0)
+    this.client =  await this.apiService.get('client/1'); // cliente fixo por enquanto
+    this.cart = await this.apiService.get('order/cart/'+this.client.id);
   }
 
 }

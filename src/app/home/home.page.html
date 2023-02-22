@@ -19,8 +19,10 @@
     <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
   </div> -->
   <ion-grid>
-    <ion-row *ngFor="let product of products">
-      <app-product-card *ngIf="products" [product]="product"></app-product-card>
+    <ion-row>
+      <ion-col *ngFor="let product of products" size="3">
+        <app-product-card *ngIf="products" [product]="product" [cart]="cart"></app-product-card>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

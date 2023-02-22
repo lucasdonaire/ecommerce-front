@@ -1,7 +1,16 @@
-<!-- <ion-card *ngIf="img"> -->
-  <p>
-    {{name}}
-  </p>
-  <img class="imagem" [src]="getImgContent()">
-<!-- </ion-card> -->
-
+<ion-card>
+  <img height="300" width="300" class="imagem" [src]="getImgContent()">
+  <ion-card-header>
+    <ion-card-title>{{name}}</ion-card-title>
+    <ion-card-subtitle>
+      <ion-row>
+        <ion-col>R$ {{price}}</ion-col>
+        <!-- <ion-icon icon="cart" size="large"></ion-icon> -->
+        <ion-col>
+          <!-- <ion-button class="button" size="small" (click)="buttonClick()">Buy</ion-button> -->
+          <ion-button class="button" size="small"  [routerLink]="link">Buy</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card-subtitle>
+  </ion-card-header>
+</ion-card>
