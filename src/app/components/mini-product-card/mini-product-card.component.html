@@ -1,0 +1,14 @@
+<ion-card>
+  <img height="100" width="100" class="imagem" [src]="getImgContent()">
+  <ion-card-header>
+    <ion-card-title>{{name}}</ion-card-title>
+    <ion-card-subtitle>
+      <ion-row>
+        <ion-col>R$ {{price}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>{{amount}} x</ion-col>
+      </ion-row>
+    </ion-card-subtitle>
+  </ion-card-header>
+</ion-card>

@@ -7,7 +7,18 @@
 <ion-content [fullscreen]="true">
   <ion-grid>
     <ion-row>
-      <img *ngIf="product" height="300" width="300" class="imagem" [src]="getImgContent()">
+        <img *ngIf="product" height="300" width="300" class="imagem" [src]="getImgContent()">
+      </ion-row>
+      <ion-row>
+        <p *ngIf="inCart && inCart?.amount>0">{{this.textMessage()}}</p>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-label>Itens</ion-label>
+          <ion-input type="number" [(ngModel)]="amount"></ion-input>
+          <ion-button *ngIf="amount>=0" (click)="click()">{{this.textButton()}}</ion-button>
+          <p *ngIf="amount<0"></p>
+        </ion-item>
     </ion-row>
   </ion-grid>
 </ion-content>

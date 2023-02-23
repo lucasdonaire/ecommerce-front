@@ -3,16 +3,17 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'app-product-card',
-  templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.scss'],
+  selector: 'app-mini-product-card',
+  templateUrl: './mini-product-card.component.html',
+  styleUrls: ['./mini-product-card.component.scss'],
 })
-export class ProductCardComponent implements OnInit {
+
+export class MiniProductCardComponent implements OnInit {
   @Input() product:any; // product
   @Input() cart:any;
-  name='';
-  price=0;
-  link=''
+  amount:number;
+  name:string;
+  price:number;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -22,7 +23,7 @@ export class ProductCardComponent implements OnInit {
   ngOnInit() {
     this.name = this.product.name
     this.price = this.product.price
-    this.link = "/product-page/"+this.cart.clientId+"/"+this.product.id
+    this.amount = this.product.amount
   }
 
   getImgContent(): SafeUrl{

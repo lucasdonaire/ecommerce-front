@@ -5,5 +5,11 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-grid>
+    <ion-row *ngFor="let product of cartItems">
+      <ion-col>
+        <app-mini-product-card  *ngIf="cartItems && cart" [product]="product" [cart]="cart"></app-mini-product-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

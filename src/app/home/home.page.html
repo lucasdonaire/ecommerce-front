@@ -3,6 +3,10 @@
     <ion-title>
       Items
     </ion-title>
+    <ion-button  [routerLink]="cartLink" color="sucess">
+      <ion-icon icon="cart"></ion-icon>
+      CART
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -21,7 +25,7 @@
   <ion-grid>
     <ion-row>
       <ion-col *ngFor="let product of products" size="3">
-        <app-product-card *ngIf="products" [product]="product" [cart]="cart"></app-product-card>
+        <app-product-card *ngIf="products && cart" [product]="product" [cart]="cart"></app-product-card>
       </ion-col>
     </ion-row>
   </ion-grid>

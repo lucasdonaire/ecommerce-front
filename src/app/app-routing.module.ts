@@ -12,11 +12,11 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'product-page/:id',
+    path: 'product-page/:clientId/:id',
     loadChildren: () => import('./pages/product-page/product-page.module').then( m => m.ProductPagePageModule)
   },
   {
-    path: 'cart',
+    path: 'cart/:clientId',
     loadChildren: () => import('./pages/cart/cart.module').then( m => m.CartPageModule)
   },
 ];
