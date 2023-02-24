@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
+import { Storage } from '@ionic/storage-angular';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.page.html',
@@ -17,10 +19,13 @@ export class CartPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
+    private storage: Storage,
   ) { }
 
   async ngOnInit() {
-    this.clientId = this.route.snapshot.params['clientId'];
+    // this.clientId = this.route.snapshot.params['clientId'];
+    await this.storage.create()
+    this.clientId = await this.storage.get('client')
     this.cart = await this.apiService.get('order/cart/'+this.clientId);
     this.cartOrders = await this.apiService.get('productOrder/order/'+this.cart.id)
     this.products = await Promise.all(

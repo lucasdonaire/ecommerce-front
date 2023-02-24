@@ -10,6 +10,7 @@ import { CartPage } from './cart.page';
 
 import { ComponentsModule } from 'src/app/components/components.module';
 
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     CartPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    IonicStorageModule.forRoot(),
   ],
   declarations: [CartPage]
 })

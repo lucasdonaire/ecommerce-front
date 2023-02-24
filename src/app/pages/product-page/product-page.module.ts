@@ -8,12 +8,18 @@ import { ProductPagePageRoutingModule } from './product-page-routing.module';
 
 import { ProductPagePage } from './product-page.page';
 
+import { ComponentsModule } from 'src/app/components/components.module';
+
+import { IonicStorageModule } from '@ionic/storage-angular';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ProductPagePageRoutingModule
+    ProductPagePageRoutingModule,
+    ComponentsModule,
+    IonicStorageModule.forRoot()
   ],
   declarations: [ProductPagePage]
 })

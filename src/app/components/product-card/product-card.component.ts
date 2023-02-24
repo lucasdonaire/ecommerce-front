@@ -22,7 +22,7 @@ export class ProductCardComponent implements OnInit {
   ngOnInit() {
     this.name = this.product.name
     this.price = this.product.price
-    this.link = "/product-page/"+this.cart.clientId+"/"+this.product.id
+    this.link = "/product-page/"+this.product.id
   }
 
   getImgContent(): SafeUrl{
