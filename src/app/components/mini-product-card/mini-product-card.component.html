@@ -1,16 +1,21 @@
-<ion-card>
-  <img height="100" width="100" class="imagem" [src]="getImgContent()">
-  <ion-card-header>
-    <ion-card-title>{{name}}</ion-card-title>
-    <ion-card-subtitle>
-      <ion-row>
-        <ion-col>R$ {{price}}</ion-col>
-        <ion-col>{{amount}} x</ion-col>
-        <ion-col>R$ {{price*amount}}</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>{{amount}} x = R$ {{price*amount}}</ion-col>
-      </ion-row>
-    </ion-card-subtitle>
-  </ion-card-header>
+<ion-card *ngIf="show">
+  <ion-item>
+
+    <ion-thumbnail slot="start">
+      <img height="200" width="200" class="imagem" [src]="getImgContent()">
+    </ion-thumbnail>
+  
+    <ion-label>
+      <h2>{{name}}</h2>
+      <p>{{amount}} x</p>
+      <h3>R$ {{price*amount}}</h3>
+    </ion-label>
+  
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="removerProduto()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-item>
 </ion-card>

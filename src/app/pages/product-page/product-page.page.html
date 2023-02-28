@@ -15,15 +15,12 @@
       <ion-row>
         <ion-item>
           <ion-label>Itens</ion-label>
-          
           <ion-select  [(ngModel)]="amount">
             <ion-select-option *ngFor="let i of arrayAmount" [value]="i">{{i}}</ion-select-option>
           </ion-select>
-
-          <ion-button *ngIf="amount>=0" (click)="click()">{{this.textButton()}}</ion-button>
-          <p *ngIf="amount<0"></p>
-
         </ion-item>
+        <ion-button *ngIf="amount>=0" (click)="click()">{{this.textButton()}}</ion-button>
+        <p *ngIf="amount<0"></p>
     </ion-row>
   </ion-grid>
 </ion-content>

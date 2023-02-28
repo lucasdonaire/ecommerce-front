@@ -5,11 +5,14 @@ import { IonicModule } from '@ionic/angular';
 import { MiniProductCardComponent } from './mini-product-card/mini-product-card.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 
+import { IonicStorageModule } from '@ionic/storage-angular';
+
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
-    RouterModule
+    RouterModule,
+    IonicStorageModule.forRoot(),
    ],
   declarations: [ 
     ProductCardComponent,

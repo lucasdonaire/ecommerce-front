@@ -32,8 +32,8 @@ export class ProductPagePage implements OnInit {
 
   async ngOnInit() {
     await this.storage.create()
-    this.id = this.route.snapshot.params['id'];
     this.clientId = await this.storage.get('client')
+    this.id = this.route.snapshot.params['id'];
     this.product = await this.apiService.get('product/'+this.id)
     this.cart = await this.apiService.get('order/cart/'+this.clientId);
     const cartItems = await this.apiService.get('productOrder/order/'+this.cart.id)
@@ -94,10 +94,7 @@ export class ProductPagePage implements OnInit {
   }
 
   textMessage(){
-    // if(this.inCart && this.inCart?.amount>0){
-      return 'você tem '+this.inCart.amount+' itens em seu carinho'
-    // }
-    // return ''
+    return 'você tem '+this.inCart.amount+' itens em seu carinho'
   }
 
 }

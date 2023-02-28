@@ -14,7 +14,6 @@ export class HomePage implements OnInit {
   client:any;
   cart:any;
   cartItems:Array<any>;
-  cartLink:string;
 
   constructor(
     private apiService: ApiService,
@@ -25,18 +24,17 @@ export class HomePage implements OnInit {
     await this.storage.create();
     await this.storage.set('client', 1)
     const clientId = await this.storage.get('client')
-    console.log(clientId)
+    // console.log(clientId)
     // const client = {id:1}
     const products = await this.apiService.get('product');
     this.products = products.filter((product: any) => product.stock>0)
     // this.client =  await this.apiService.get('client/1'); // cliente fixo por enquanto
     this.client =  await this.apiService.get('client/'+clientId); // cliente fixo por enquanto
     // this.cartLink = "../cart/"+this.client.id
-    this.cartLink = "../cart"
-    this.cart = await this.apiService.get('order/cart/'+this.client.id);
-    console.log(this.cart)
-    this.cartItems = await this.apiService.get('productOrder/order/'+this.cart.id)
-    console.log(this.cartItems)
+    // this.cart = await this.apiService.get('order/cart/'+this.client.id);
+    // console.log(this.cart)
+    // this.cartItems = await this.apiService.get('productOrder/order/'+this.cart.id)
+    // console.log(this.cartItems)
   }
 
 }

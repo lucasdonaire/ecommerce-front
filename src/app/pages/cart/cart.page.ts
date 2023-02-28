@@ -15,6 +15,7 @@ export class CartPage implements OnInit {
   cartOrders:Array<any>; // product orders
   products:Array<any>; // product
   cartItems:Array<any>; // all info
+  total:number;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,7 +24,6 @@ export class CartPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    // this.clientId = this.route.snapshot.params['clientId'];
     await this.storage.create()
     this.clientId = await this.storage.get('client')
     this.cart = await this.apiService.get('order/cart/'+this.clientId);
@@ -36,13 +36,27 @@ export class CartPage implements OnInit {
     )
     const cartItems = [] 
     for(let i=0 ; i<this.cartOrders.length ; i++){
-      let obj = {...this.products[i], amount: this.cartOrders[i].amount}
-      cartItems.push(obj)
+      let amount =  this.cartOrders[i].amount
+      let obj = {...this.products[i], amount: amount}
+      if(amount > 0){
+        cartItems.push(obj)
+      }
     }
-
     this.cartItems = cartItems;
-    console.log(this.cartOrders)
-    console.log(this.cartItems)
+    this.total = this.cartItems.reduce((total,atual)=>{
+      return total + atual.amount*atual.price
+    },0)
+
+  }
+
+  calcularSoma(){
+    this.total = this.cartItems.reduce((total,atual)=>{
+      return total + atual.amount*atual.price
+    },0)
+  }
+
+  async endShop(){
+
   }
 
 }

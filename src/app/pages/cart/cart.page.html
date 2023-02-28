@@ -8,7 +8,22 @@
   <ion-grid>
     <ion-row *ngFor="let product of cartItems">
       <ion-col>
-        <app-mini-product-card  *ngIf="cartItems && cart" [product]="product" [cart]="cart"></app-mini-product-card>
+        <app-mini-product-card *ngIf="cartItems" [product]="product" [(amount)]="product.amount" (amountChange)="calcularSoma()"></app-mini-product-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col> 
+        <ion-card>
+          <ion-item>
+            <h2 slot="end">Total: &nbsp; R$ {{total}} &nbsp;</h2>
+          </ion-item>
+          <ion-item>
+            <ion-button slot="end" (click)="endShop()">
+              Finalizar compra 
+            </ion-button>
+          </ion-item>
+        </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>

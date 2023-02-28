@@ -3,7 +3,7 @@
     <ion-title>
       Items
     </ion-title>
-    <ion-button  [routerLink]="cartLink" color="sucess">
+    <ion-button  routerLink="../cart" color="sucess">
       <ion-icon icon="cart"></ion-icon>
       CART
     </ion-button>
@@ -11,21 +11,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- <ion-header collapse="condense">
-    <p>header</p>
-    <ion-toolbar>
-      <p>toolbar</p>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
-  <!-- <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div> -->
   <ion-grid>
     <ion-row>
       <ion-col *ngFor="let product of products" size="3">
-        <app-product-card *ngIf="products && cart" [product]="product" [cart]="cart"></app-product-card>
+        <app-product-card *ngIf="products" [product]="product"></app-product-card>
       </ion-col>
     </ion-row>
   </ion-grid>
