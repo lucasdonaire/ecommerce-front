@@ -32,15 +32,19 @@ export class ProductPagePage implements OnInit {
 
   async ngOnInit() {
     await this.storage.create()
-    this.clientId = await this.storage.get('client')
     this.id = this.route.snapshot.params['id'];
     this.product = await this.apiService.get('product/'+this.id)
-    this.cart = await this.apiService.get('order/cart/'+this.clientId);
-    const cartItems = await this.apiService.get('productOrder/order/'+this.cart.id)
-    this.inCart = cartItems.filter((el:any)=> el.productId == this.id)[0]
-    this.amount = this.inCart.amount
     this.name = this.product.name
     this.price = this.product.price
+
+    this.clientId = await this.storage.get('client')
+    if(this.clientId){
+      this.cart = await this.apiService.get('order/cart/'+this.clientId);
+      const cartItems = await this.apiService.get('productOrder/order/'+this.cart.id)
+      this.inCart = cartItems.filter((el:any) => el.productId == this.id)[0] || {amount:0}
+    }
+    this.amount = this?.inCart?.amount || 0
+
     const arrayAmount = []
     for(let i=0; i<this.product.stock ; i++){
       arrayAmount.push(i)
@@ -53,6 +57,10 @@ export class ProductPagePage implements OnInit {
   }
 
   async click(){
+    if(!this.clientId){
+      this.alertClientLogin()
+      return
+    }
     const productOrder = {
       orderId: this.cart.id,
       productId: this.product.id,
@@ -79,6 +87,25 @@ export class ProductPagePage implements OnInit {
           text:'Continuar comprando', 
           handler: () => {
             this.router.navigateByUrl('/home');
+          }
+        }
+      ],
+    });
+    await alert.present();
+  }
+
+  async alertClientLogin(){
+    const alert = await this.alertController.create({
+      header: 'Não é possível comprar pois você nao esta logado',
+      message: 'se fudeu',
+      buttons: [
+        {
+          text:'OK'
+        },
+        {
+          text:'Fazer Login', 
+          handler: () => {
+            this.router.navigateByUrl('/login');
           }
         }
       ],

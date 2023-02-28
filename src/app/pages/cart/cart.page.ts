@@ -56,7 +56,8 @@ export class CartPage implements OnInit {
   }
 
   async endShop(){
-
+    await this.apiService.put('order/'+this.cart.id,{status:true})
+    this.ngOnInit()
   }
 
 }
