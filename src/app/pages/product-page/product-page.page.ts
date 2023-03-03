@@ -34,6 +34,7 @@ export class ProductPagePage implements OnInit {
     await this.storage.create()
     this.id = this.route.snapshot.params['id'];
     this.product = await this.apiService.get('product/'+this.id)
+    console.log(this.product)
     this.name = this.product.name
     this.price = this.product.price
 
@@ -46,7 +47,7 @@ export class ProductPagePage implements OnInit {
     this.amount = this?.inCart?.amount || 0
 
     const arrayAmount = []
-    for(let i=0; i<this.product.stock ; i++){
+    for(let i=0; i<=this.product.stock ; i++){
       arrayAmount.push(i)
     }
     this.arrayAmount = arrayAmount
@@ -97,7 +98,7 @@ export class ProductPagePage implements OnInit {
   async alertClientLogin(){
     const alert = await this.alertController.create({
       header: 'Não é possível comprar pois você nao esta logado',
-      message: 'se fudeu',
+      message: 'faça login para continuar',
       buttons: [
         {
           text:'OK'

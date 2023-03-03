@@ -57,6 +57,11 @@ export class CartPage implements OnInit {
 
   async endShop(){
     await this.apiService.put('order/'+this.cart.id,{status:true})
+    for(let product of this.cartItems){
+      let amount = product.stock - product.amount
+      let newSales = product.sales + product.amount
+      await this.apiService.put('product/'+product.id, {stock: amount, sales: newSales})
+    }
     this.ngOnInit()
   }
 

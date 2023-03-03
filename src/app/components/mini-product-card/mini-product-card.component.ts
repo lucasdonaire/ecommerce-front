@@ -11,10 +11,11 @@ import { Storage } from '@ionic/storage-angular';
 
 export class MiniProductCardComponent implements OnInit {
   @Input() product:any; // product
+  @Input() cart:any; // product
   @Input() amount:number;
   @Output() amountChange = new EventEmitter<number>();
   show=true;
-  cart:any;
+  // cart:any;
   name:string;
   price:number;
 
@@ -27,7 +28,7 @@ export class MiniProductCardComponent implements OnInit {
   async ngOnInit() {
     await this.storage.create()
     const clientId = await this.storage.get('client')
-    this.cart = await this.apiService.get('order/cart/'+clientId);
+    // this.cart = await this.apiService.get('order/cart/'+clientId);
     this.name = this.product.name
     this.price = this.product.price
   }

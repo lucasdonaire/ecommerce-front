@@ -7,6 +7,15 @@
       <ion-icon icon="cart"></ion-icon>
       CART
     </ion-button>
+    <ion-button slot="end" routerLink="../login" color="sucess">
+      <ion-icon icon="person-outline"></ion-icon>
+      <p *ngIf="client">
+        {{client.name}}
+      </p>
+      <p *ngIf="!client">
+        LOGIN
+      </p>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 

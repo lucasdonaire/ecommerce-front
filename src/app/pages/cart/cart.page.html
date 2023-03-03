@@ -8,7 +8,7 @@
   <ion-grid>
     <ion-row *ngFor="let product of cartItems">
       <ion-col>
-        <app-mini-product-card *ngIf="cartItems" [product]="product" [(amount)]="product.amount" (amountChange)="calcularSoma()"></app-mini-product-card>
+        <app-mini-product-card *ngIf="cartItems" [product]="product" [(amount)]="product.amount" (amountChange)="calcularSoma()" [cart]="cart"></app-mini-product-card>
       </ion-col>
     </ion-row>
 

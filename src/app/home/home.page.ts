@@ -12,8 +12,6 @@ import { Storage } from '@ionic/storage-angular';
 export class HomePage implements OnInit {
   products = [];
   client:any;
-  cart:any;
-  cartItems:Array<any>;
 
   constructor(
     private apiService: ApiService,
@@ -22,14 +20,17 @@ export class HomePage implements OnInit {
 
   async ngOnInit(){
     await this.storage.create();
-    await this.storage.clear()
-    // await this.storage.set('client', 1)
+
     const products = await this.apiService.get('product');
+    console.log(products)
     this.products = products.filter((product: any) => product.stock>0)
     
-    let client = await this.storage.get('client')
-    const clientId = await this.storage.get('client')
-    this.client =  await this.apiService.get('client/'+clientId); // cliente fixo por enquanto
+    let clientId = await this.storage.get('client')
+    if(clientId){
+      this.client =  await this.apiService.get('client/'+clientId); // cliente fixo por enquanto
+    } else {
+      this.client = null
+    }
   }
 
 }
